@@ -1,19 +1,18 @@
-name: GitHub Actions Demo
+name: Github Actions Demo
 on:
   push:
     branches: [main]
-    paths-ignore: .github/**
+    paths-ignore: ['.github/**']
   pull_request:
     branches: [main]
-  schedule: 
+  schedule:
     - cron: '15 6 * * SUN'
   workflow_dispatch:
     inputs:
-      environments:
+      environment:
         description: 'Environment to deploy to'
         type: environment
         required: true
-    
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -28,14 +27,13 @@ jobs:
         run: |
           echo "The repository ${{ github.repository }} contains the following files:"
           tree
-
   Test:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
     needs: Build
     environment: Test
     steps:
-      - run: echo "🧪 Testing..."
+      - run: echo "🧪🧪🧪 Testing..."
 
   Load-Test:
     runs-on: ubuntu-latest
@@ -44,7 +42,7 @@ jobs:
     environment: Load-Test
     steps:
       - run: |
-          echo "🧪 Testing..."
+          echo "🧪🧪🧪 Load-Testing..."
           sleep 15
 
   Production:
@@ -56,20 +54,17 @@ jobs:
     if: github.event.inputs.environment == 'Production'
     steps:
       - run: |
-          echo "🚀 Step 1..."
+          echo "🚀 Step 1 of many xD..."
           sleep 10
       - run: |
-          echo "🚀 Step 2..."
+          echo "🚀 Step 2 av 2, neida hehe..."
           sleep 10
       - run: |
-          echo "🚀 Step 3..."
+          echo "🚀 Step 3 av Tre..."
           sleep 10
       - run: |
-          echo "🚀 Step 4..."
+          echo "🚀 Step 4 av 1 hahaha..."
           sleep 10
       - run: |
-          echo "🚀 Step 5..."
+          echo "🚀 Step 5 neida bro..."
           sleep 10
-    
-    
-    
