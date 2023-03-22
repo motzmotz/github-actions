@@ -13,6 +13,7 @@ on:
         description: 'Environment to deploy to'
         type: environment
         required: true
+    
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -27,6 +28,7 @@ jobs:
         run: |
           echo "The repository ${{ github.repository }} contains the following files:"
           tree
+
   Test:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
